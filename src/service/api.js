@@ -1,0 +1,1 @@
+export const barsUrl = 'http://pb-api.herokuapp.com/bars'
