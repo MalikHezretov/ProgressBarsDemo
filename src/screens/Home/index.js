@@ -40,9 +40,10 @@ function Home() {
       if(`${bar.id}` === `${target}`) {
         if(negativeValue && convertedValue <= bar.value && bar.value > 0) {
           bar.value = bar.value - convertedValue
+          if(bar.value <= maxLimit) bar.barColor = '#d4f1f9'
         } else if(positiveValue) {
             bar.value += value
-            if(bar.value > maxLimit) bar.barColor = 'red'
+            if(bar.value > maxLimit) bar.barColor = '#FF0000'
           } else if(negativeValue && convertedValue > bar.value) {
             bar.value = 0
           }
@@ -70,7 +71,8 @@ function Home() {
         {progressBars}
       </div>
       <div className="row-container" data-testid="row-container">
-      <select
+      {barsArray.length ? (
+        <select
           className="dropdown-style"
           data-testid="bar-dropdown"
           onChange={(e) => {
@@ -85,6 +87,8 @@ function Home() {
             )
           })}
         </select>
+      ) : (<h3>Loading...</h3>)}
+
         {progressButtons}
       </div>
     </div>
